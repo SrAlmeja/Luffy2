@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luffy2", "Luffy2\Luffy2.csproj", "{A108AFC2-7422-4ABA-BC37-72AC276893DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A108AFC2-7422-4ABA-BC37-72AC276893DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A108AFC2-7422-4ABA-BC37-72AC276893DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A108AFC2-7422-4ABA-BC37-72AC276893DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A108AFC2-7422-4ABA-BC37-72AC276893DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CADBAFB8-C65F-41BB-B924-A7401325E048}
+	EndGlobalSection
+EndGlobal
