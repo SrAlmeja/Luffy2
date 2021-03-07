@@ -9,11 +9,11 @@ public class Luffy2 : MonoBehaviour
     Rigidbody2D MDLuffy;
     public float maxSpeed;
 
-    //Flip the character script
+    //Flip variables
     bool flipLuffy = true;
     SpriteRenderer luffyFlip;
 
-    //Saltar
+    //Jump variables
     bool gomuGomuJump = true;
     bool floor = false;
     float checkFloor = 0.2f;
@@ -27,10 +27,8 @@ public class Luffy2 : MonoBehaviour
     {
         MDLuffy = GetComponent<Rigidbody2D>();
         luffyFlip = GetComponent<SpriteRenderer>();
-
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (gomuGomuJump && floor && Input.GetAxis("Jump") > 0)
@@ -42,17 +40,16 @@ public class Luffy2 : MonoBehaviour
 
         floor = Physics2D.OverlapCircle(checkFloor.position, checkFloor, floorLayer);
 
-
         float move = Input.GetAxis("Horizontal");
         if (gomuGomuJump)
         {
             if (move > 0 && !flipLuffy)
             {
-                voltear();
+                Flip();
             }
             else if (move < 0 && flipLuffy)
             {
-                voltear();
+                Flip();
             }
             MDLuffy.velocity = new Vector2(move * maxSpeed, MDLuffy.velocity.y);
         }
@@ -62,15 +59,12 @@ public class Luffy2 : MonoBehaviour
         }
     }
 
-
-
-    void voltear()
+    void Flip()
     {
         flipLuffy = !flipLuffy;
         luffyFlip.flipX = !luffyFlip.flipX;
     }
-
-
+    // Luffy sprite will flip with <-- or -->
 
     public void jump()
     {
@@ -84,6 +78,7 @@ public class Luffy2 : MonoBehaviour
             Over.lose();
         }
     }
+
     public void OnTriggerEnter2D(Collider other)
     {
         if (other.gameObject.CompareTag("Coin"))
@@ -91,6 +86,5 @@ public class Luffy2 : MonoBehaviour
             other.gameObject.SetActive(false);
             Coin = Coin + 1;
         }
-
     }
 }
