@@ -2,59 +2,59 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Luffy : MonoBehaviour
+public class Luffy2 : MonoBehaviour
 
 {
     public Over Over;
     Rigidbody2D MDLuffy;
-    public float maxspeed;
+    public float maxSpeed;
 
-    //Voltear
-    bool flipL = true;
-    SpriteRenderer Luffyf;
+    //Flip the character script
+    bool flipLuffy = true;
+    SpriteRenderer luffyFlip;
 
     //Saltar
-    bool gomugomujump = true;
+    bool gomuGomuJump = true;
     bool floor = false;
-    float checkfloor = 0.2f;
-    public LayerMask floorlayer;
-    public Transform checkfloor;
-    public float hecanfly;
+    float checkFloor = 0.2f;
+    public layerMask floorLayer;
+    public transform checkFloor;
+    public float heCanFly;
 
-    private int Coin;
+    private int coin;
 
     void Start()
     {
-        MonkyDLuffy = GetComponent<Rigidbody2D>();
-        Luffyf = GetComponent<SpriteRenderer>();
+        MDLuffy = GetComponent<Rigidbody2D>();
+        luffyFlip = GetComponent<SpriteRenderer>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gomugomujump && floor && Input.GetAxis("Jump") > 0)
+        if (gomuGomuJump && floor && Input.GetAxis("Jump") > 0)
         {
             MDLuffy.velocity = new Vector2(MDLuffy.velocity.x, 0f);
-            MDLuffy.AddForce(new Vector2(0, hecanfly), ForceMode2D.Impulse);
+            MDLuffy.AddForce(new Vector2(0, heCanFly), ForceMode2D.Impulse);
             floor = false;
         }
 
-        floor = Physics2D.OverlapCircle(checkfloor.position, checkfloor, floorlayer);
+        floor = Physics2D.OverlapCircle(checkFloor.position, checkFloor, floorLayer);
 
 
         float move = Input.GetAxis("Horizontal");
-        if (gomugomujump)
+        if (gomuGomuJump)
         {
-            if (move > 0 && !flipL)
+            if (move > 0 && !flipLuffy)
             {
                 voltear();
             }
-            else if (move < 0 && flipL)
+            else if (move < 0 && flipLuffy)
             {
                 voltear();
             }
-            MDLuffy.velocity = new Vector2(move * maxspeed, MDLuffy.velocity.y);
+            MDLuffy.velocity = new Vector2(move * maxSpeed, MDLuffy.velocity.y);
         }
         else
         {
@@ -66,15 +66,15 @@ public class Luffy : MonoBehaviour
 
     void voltear()
     {
-        flipL = !flipL;
-        Luffyf.flipX = !Luffyf.flipX;
+        flipLuffy = !flipLuffy;
+        luffyFlip.flipX = !luffyFlip.flipX;
     }
 
 
 
     public void jump()
     {
-        gomugomujump = !gomugomujump;
+        gomuGomuJump = !gomuGomuJump;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
