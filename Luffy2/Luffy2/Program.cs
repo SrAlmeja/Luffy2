@@ -10,51 +10,51 @@ public class Luffy : MonoBehaviour
     public float maxspeed;
 
     //Voltear
-    bool voltearL = true;
-    SpriteRenderer Luffyv;
+    bool flipL = true;
+    SpriteRenderer Luffyf;
 
     //Saltar
-    bool gomugomusalto = true;
-    bool Suelo = false;
-    float revisarsuelo = 0.2f;
-    public LayerMask capasuelo;
-    public Transform checarsuelo;
-    public float esdelasquevuelan;
+    bool gomugomujump = true;
+    bool floor = false;
+    float checkfloor = 0.2f;
+    public LayerMask floorlayer;
+    public Transform checkfloor;
+    public float hecanfly;
 
-    private int Moneda;
+    private int Coin;
 
     void Start()
     {
-        MDLuffy = GetComponent<Rigidbody2D>();
-        Luffyv = GetComponent<SpriteRenderer>();
+        MonkyDLuffy = GetComponent<Rigidbody2D>();
+        Luffyf = GetComponent<SpriteRenderer>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gomugomusalto && Suelo && Input.GetAxis("Jump") > 0)
+        if (gomugomujump && floor && Input.GetAxis("Jump") > 0)
         {
             MDLuffy.velocity = new Vector2(MDLuffy.velocity.x, 0f);
-            MDLuffy.AddForce(new Vector2(0, esdelasquevuelan), ForceMode2D.Impulse);
-            Suelo = false;
+            MDLuffy.AddForce(new Vector2(0, hecanfly), ForceMode2D.Impulse);
+            floor = false;
         }
 
-        Suelo = Physics2D.OverlapCircle(checarsuelo.position, revisarsuelo, capasuelo);
+        floor = Physics2D.OverlapCircle(checkfloor.position, checkfloor, floorlayer);
 
 
-        float mover = Input.GetAxis("Horizontal");
-        if (gomugomusalto)
+        float move = Input.GetAxis("Horizontal");
+        if (gomugomujump)
         {
-            if (mover > 0 && !voltearL)
+            if (move > 0 && !flipL)
             {
                 voltear();
             }
-            else if (mover < 0 && voltearL)
+            else if (move < 0 && flipL)
             {
                 voltear();
             }
-            MDLuffy.velocity = new Vector2(mover * maxspeed, MDLuffy.velocity.y);
+            MDLuffy.velocity = new Vector2(move * maxspeed, MDLuffy.velocity.y);
         }
         else
         {
@@ -66,30 +66,30 @@ public class Luffy : MonoBehaviour
 
     void voltear()
     {
-        voltearL = !voltearL;
-        Luffyv.flipX = !Luffyv.flipX;
+        flipL = !flipL;
+        Luffyf.flipX = !Luffyf.flipX;
     }
 
 
 
-    public void salta()
+    public void jump()
     {
-        gomugomusalto = !gomugomusalto;
+        gomugomujump = !gomugomujump;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ovni")
         {
-            Over.perder();
+            Over.lose();
         }
     }
     public void OnTriggerEnter2D(Collider other)
     {
-        if (other.gameObject.CompareTag("Moneda"))
+        if (other.gameObject.CompareTag("Coin"))
         {
             other.gameObject.SetActive(false);
-            Moneda = Moneda + 1;
+            Coin = Coin + 1;
         }
 
     }
