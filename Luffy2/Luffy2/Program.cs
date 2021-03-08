@@ -66,7 +66,7 @@ public class Luffy2 : MonoBehaviour
     }
     // Luffy sprite will flip with <-- or -->
 
-    public void jump()
+    public void Jump()
     {
         gomuGomuJump = !gomuGomuJump;
     }
